@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="links/favicon.ico">
+<link rel="stylesheet" href="scripts/styles.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<title>Coucou mes couillasses</title>
+</head>
+
+
+
+<body>
+
+
+<a onclick="vers1()">Scroll</a>
+<div id="projet1" class="projets">
+    <img class="image" src="links/TERRAIN/10_terrain_claire-laurent.jpg" alt="- Terrain">
+    <img class="image" src="links/TERRAIN/9_terrain_claire-laurent.jpg" alt="- Terrain">
+    <img class="image" src="links/TERRAIN/2_terrain_claire-laurent.jpg" alt="- Terrain">
+    <img class="image" src="links/TERRAIN/3_terrain_claire-laurent.jpg" alt="- Terrain">
+    <img class="image" src="links/TERRAIN/4_terrain_claire-laurent.jpg" alt="- Terrain">
+    <img class="image" src="links/TERRAIN/5_terrain_claire-laurent.jpg" alt="- Terrain">
+    <img class="image" src="links/TERRAIN/6_terrain_claire-laurent.jpg" alt="- Terrain">
+    <img class="image" src="links/TERRAIN/7_terrain_claire-laurent.jpg" alt="- Terrain">
+</div>
+
+<a onclick="vers2()">Scroll</a>
+<div id="projet2" class="projets">
+    <img class="image" src="links/TERRAIN/10_terrain_claire-laurent.jpg" alt="- Terrain">
+    <img class="image" src="links/TERRAIN/9_terrain_claire-laurent.jpg" alt="- Terrain">
+    <img class="image" src="links/TERRAIN/2_terrain_claire-laurent.jpg" alt="- Terrain">
+    <img class="image" src="links/TERRAIN/3_terrain_claire-laurent.jpg" alt="- Terrain">
+    <img class="image" src="links/TERRAIN/4_terrain_claire-laurent.jpg" alt="- Terrain">
+    <img class="image" src="links/TERRAIN/5_terrain_claire-laurent.jpg" alt="- Terrain">
+    <img class="image" src="links/TERRAIN/6_terrain_claire-laurent.jpg" alt="- Terrain">
+    <img class="image" src="links/TERRAIN/7_terrain_claire-laurent.jpg" alt="- Terrain">
+</div>
+
+
+<a onclick="vers3()">Scroll</a>
+<div id="projet3" class="projets">
+    <img class="image" src="links/TERRAIN/10_terrain_claire-laurent.jpg" alt="- Terrain">
+    <img class="image" src="links/TERRAIN/9_terrain_claire-laurent.jpg" alt="- Terrain">
+    <img class="image" src="links/TERRAIN/2_terrain_claire-laurent.jpg" alt="- Terrain">
+    <img class="image" src="links/TERRAIN/3_terrain_claire-laurent.jpg" alt="- Terrain">
+    <img class="image" src="links/TERRAIN/4_terrain_claire-laurent.jpg" alt="- Terrain">
+    <img class="image" src="links/TERRAIN/5_terrain_claire-laurent.jpg" alt="- Terrain">
+    <img class="image" src="links/TERRAIN/6_terrain_claire-laurent.jpg" alt="- Terrain">
+    <img class="image" src="links/TERRAIN/7_terrain_claire-laurent.jpg" alt="- Terrain">
+  </div>
+</div>
+
+
+
+<script>
+
+const slider = document.querySelector(".projets");
+let mouseDown = false;
+let startX, scrollLeft;
+
+let startDragging = function (e) {
+  mouseDown = true;
+  startX = e.pageX - slider.offsetLeft;
+  scrollLeft = slider.scrollLeft;
+};
+let stopDragging = function (event) {
+  mouseDown = false;
+};
+
+slider.addEventListener('mousemove', (e) => {
+  e.preventDefault();
+  if(!mouseDown) { return; }
+  const x = e.pageX - slider.offsetLeft;
+  const scroll = x - startX;
+  slider.scrollLeft = scrollLeft - scroll;
+});
+
+// Add the event listeners
+slider.addEventListener('mousedown', startDragging, false);
+slider.addEventListener('mouseup', stopDragging, false);
+slider.addEventListener('mouseleave', stopDragging, false);
+
+
+
+
+// Bouton scroll left
+
+function vers1() {
+  const element = document.getElementById("projet1");
+  element.scrollLeft = 0;
+}
+function vers2() {
+  const element = document.getElementById("projet2");
+  element.scrollLeft = 0;
+}
+function vers3() {
+  const element = document.getElementById("projet3");
+  element.scrollLeft = 0;
+}
+
+</script>
+</body>
+</html>
