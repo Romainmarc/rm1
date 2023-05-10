@@ -118,8 +118,8 @@ html {
     /*float: right;*/
     /*text-align: center;*/
     transform: translate(-50%, -50%);
-    top:50vh;
-    right: 15px;
+    top:95vh;
+    right: 0px;
 mix-blend-mode: difference;
     color: black;
     
@@ -127,6 +127,7 @@ mix-blend-mode: difference;
 
 .about {
     position: fixed;
-top: 50vh;
+    text-align: center;
+top: 91vh;
  mix-blend-mode: difference;
 }
