@@ -56,8 +56,8 @@ h1 {
 font-weight: 400;
   color: white;
   font-size: 35px;
-  margin-top: 50px;
-  margin-bottom: -15px;
+  /*margin-top: 50px;
+  margin-bottom: -15px;*/
 }
 
 p, a, input {
