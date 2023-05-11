@@ -113,13 +113,21 @@ html {
   height: 100vh;
 }
 
+.intro {
+    min-height: calc(100vh - 30px); 
+    display: flex;
+    align-items: center;
+    
+}
+
 .work {   
     position: fixed;
     /*float: right;*/
     /*text-align: center;*/
     transform: translate(-50%, -50%);
-    top:95vh;
-    right: 0px;
+bottom:0;
+    left: 50%;
+    transform: translateX(-50%);
 mix-blend-mode: difference;
     color: black;
     
@@ -128,6 +136,8 @@ mix-blend-mode: difference;
 .about {
     position: fixed;
     text-align: center;
-top: 91vh;
+top:0;
+    left: 50%;
+    transform: translateX(-50%);
  mix-blend-mode: difference;
 }
