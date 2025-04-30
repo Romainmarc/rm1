@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    body {
+      background: #ededed;
+      font-family: sans-serif;
+      margin: 20px;
+    }
+
+    h2 {
+      color: black;
+      font-weight: bold;
+    }
+
+    Title {
+      color: black;
+      font-size: 100px;
+    }
+
+    button {
+      background: none;
+      color: white;
+      border: none;
+      padding: 20px 40px;
+      border-radius: 80px;
+      font-size: 40px;
+      margin-right: 10px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      position: absolute;
+      top: 20px;
+      z-index: 10000;
+      mix-blend-mode: difference;
+    }
+
+    button.active {
+      background: black;
+      color: white;
+    }
+
+    .popup {
+      display: none;
+      background-color: transparent;
+      color: black;
+      position: absolute;
+      z-index: 1000;
+      border-radius: 10px;
+      width: 25vw;
+      padding: 0;
+      box-sizing: border-box;
+      cursor: move;
+    }
+
+    .product_image {
+      width: 125%;
+      height: auto;
+    }
+
+    .product_description {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 15px;
+      text-align: center;
+      font-size: 14px;
+      width: 80%;
+      max-width: 900px;
+      z-index: 9999;
+      color: white;
+      mix-blend-mode: difference;
+    }
+  </style>
+</head>
+
+<body>
+  <title>Romain Marc</title>
+  <button id="workButton" style="left: 20px;">Work</button>
+  <button id="aboutButton" style="right: 20px;">About</button>
+
+  <div id="popup" class="popup">
+    <div class="popup_content">
+      <img id="popupImage" class="product_image" draggable="false" alt="Artwork">
+    </div>
+  </div>
+
+  <p id="popupDescription" class="product_description"></p>
+
+  <script>
+    const popup = document.getElementById("popup");
+    const popupImage = document.getElementById("popupImage");
+    const popupDescription = document.getElementById("popupDescription");
+    const workButton = document.getElementById("workButton");
+
+    const projects = [
+      {
+        description: "Poster design and various visuals for the “Christian Dior, Designer of Dreams” exhibition at the National Museum in Riyadh, presenting a retrospective on 75 years of Christian Dior's creativity and audacity.",
+        images: [
+          "links/DIOR/dior1.jpg",
+          "links/DIOR/dior3.jpg",
+          "links/DIOR/dior2.webp",
+        ]
+      },
+      {
+        description: "MF Beach Club is a rounded variable typeface in 4 styles: Sans, Sans Stencil, Serif and Serif Stencil. All these styles can be combined to add fun an flavour. The typeface is supporting Latin languages. Design by Milletype Foundry",
+        images: [
+          "links/MF_BEACHCLUB/DSC02842.jpg",
+          "links/MF_BEACHCLUB/DSC02810.jpg",
+          "links/MF_BEACHCLUB/DSC02947.jpg",
+          "links/MF_BEACHCLUB/MF_Beach_Club.gif",
+          "links/MF_BEACHCLUB/tshit_mockup_front.webp",
+          "links/MF_BEACHCLUB/tshit_mockup_back.jpg",
+        ]
+      },
+    {
+        description: "This book questions the different creative processes that are anchored in an extension of the history of typography by allowing its conservation, through the ages, by adapting old typographic characters or by larger creations that refer directly to a current. 170 × 246 mm - 128 pages - Cover 250gr/m2 - Uncoated paper 80gr/m2 - Glued square back - Fluorescent orange jaspage",
+        images: [
+          "links/RECREATION_CONTEMPORAINE/couv-1.jpg",
+          "links/RECREATION_CONTEMPORAINE/dp-1.jpg",
+          "links/RECREATION_CONTEMPORAINE/dp-3.jpg",
+          "links/RECREATION_CONTEMPORAINE/dp-6.jpg",
+          "links/RECREATION_CONTEMPORAINE/dp-8.jpg",
+          "links/RECREATION_CONTEMPORAINE/dp-9.jpg",
+        ]
+      },
+      {
+        description: "An exquisite serif typeface meticulously crafted to echo the grandeur of ancient Greek engravings and the enduring elegance of lapidary inscriptions. Rooted in its earliest inspirations,",
+        images: [
+          "links/MF_CORINTHE/MF_Specimen_Corinthe5.jpg",
+          "links/MF_CORINTHE/MF_Specimen_Corinthe6.jpg",
+          "links/MF_CORINTHE/Corintheoverzoom.gif",
+          "links/MF_CORINTHE/MF_Specimen_Corinthe7.jpg",
+          "links/MF_CORINTHE/MF_Specimen_Corinthe9.jpg",
+          "links/MF_CORINTHE/DSC02727.jpg",
+        ]
+      },
+        {
+        description: "The PRAd'A (Palmarès Rédional d'architecture en Nouvelle-Aquitaine) is a prize list aimed at rewarding architectural creations in the nouvelle-aquitaine region. The identity system inspired by the classification into different categories: S, M, L, XL. Based on adaptability, games of scale and construction revolving around a variable typography offering a playground. Design: Tabaramounien - Scenography: MJ Studio",
+        images: [
+          "links/PRADA/IMG_3316.jpg",
+          "links/PRADA/IMG_5384.JPG",
+          "links/PRADA/IMG_3318.jpg",
+          "links/PRADA/IMG_5389.JPG",
+        ]
+      },
+      {
+        description: "SoS Sans is a bespoke typeface designed for Society Of Signs, a website devoted to pictography history and exploration. Society Of Signs is showcasing a range of pictograms and language systems.",
+        images: [
+          "links/SOS/sos5.png",
+          "links/SOS/sos1.png",
+          "links/SOS/sos2.png",
+          "links/SOS/sos3.png",
+          "links/SOS/sos4.png",
+        ]
+      },
+        {
+        description: "In Search Of tells the fictional story of a person generated by artificial intelligence. The story is read through a series of differents texts, following the ages of life, from birth to death. Mirrors of our lives. 630 pages - Cover 250gr/m2 - Coated paper 80gr/m2 - Glued square back- Matte varnish",
+        images: [
+          "links/a_la_recherche/EDITION_1.jpg",
+          "links/a_la_recherche/EDITION_3.jpg",
+          "links/a_la_recherche/EDITION_5.jpg",
+          "links/a_la_recherche/EDITION_6.jpg",
+          "links/a_la_recherche/POSTER_2.jpg",
+          "links/a_la_recherche/SPECIMEN1.jpg",
+          "links/a_la_recherche/SPECIMEN2.jpg",
+          "links/a_la_recherche/SPECIMEN3.jpg",
+        ]
+      },
+        {
+        description: "Stylistic set extension for the Purple Haze typeface to Greek and Georgian alphabets with the aim of expanding languages. Design by Fontspectrum (Edgar Walthert & Daniel Maarleveld).",
+        images: [
+          "links/PURPLE_HAZE/Specimen.jpg",
+          "links/PURPLE_HAZE/Specimen2.jpg",
+          "links/PURPLE_HAZE/Specimen4.jpg",
+          "links/PURPLE_HAZE/Specimen6.jpg",
+          "links/PURPLE_HAZE/Specimen9.jpg",
+        ]
+      },
+        {
+        description: "Ostensible is a collection dealing with the question of brutalism in architecture. This edition is composed of three issues, each dealing with a different subject and forming a common object. The three books are collected in a concrete box produced by @ofthebridge. 180 × 240 mm - 210 pages - 160gr/m2 paper - Sewn square back",
+        images: [
+          "links/Ostensible/DSC09212-scaled.jpg",
+          "links/Ostensible/DSC09293-scaled.jpg",
+          "links/Ostensible/DSC09264.jpg",
+          "links/Ostensible/DSC09316-scaled.jpg",
+          "links/Ostensible/DSC09291.jpg",
+        ]
+      },
+        {
+        description: "Electric Blue is a variable typeface in two axis (width and weight) inspired by the pixel design era and also a tribute to a famous Dutch graphic and type designer know as Wim Crouwel.Design by Fontspectrum (Edgar Walthert & Daniel Maarleveld).",
+        images: [
+          "links/ELECTRIC_BLUE/specimen.jpg",
+          "links/ELECTRIC_BLUE/specimen5.jpg",
+          "links/ELECTRIC_BLUE/specimen6.jpg",
+          "links/ELECTRIC_BLUE/specimen8.jpg",
+          "links/ELECTRIC_BLUE/specimen12.jpg",
+          "links/ELECTRIC_BLUE/specimen14.jpg",
+        ]
+      },
+        {
+        description: "Burner institute is a project of a fictitious persona of a protagonist, banker by day and graffiti artist by night. The realization of the specimens makes it possible to confront these two worlds, Posters: 1200 × 800 mm - Parchment: 210 × 8300 mm",
+        images: [
+          "links/BURNER_INSTITUTE/letters.jpg",
+          "links/BURNER_INSTITUTE/poster1.jpg",
+          "links/BURNER_INSTITUTE/poster2.jpg",
+          "links/BURNER_INSTITUTE/poster3.jpg",
+          "links/BURNER_INSTITUTE/parcheminfondnoir.jpg",
+        ]
+      },
+    ];
+
+    let currentProjectIndex = 0;
+    let currentImageIndex = 0;
+    let zCounter = 1000;
+
+    function bringToFront(el) {
+      zCounter++;
+      el.style.zIndex = zCounter;
+    }
+
+    function showPopup() {
+      if (currentImageIndex === 0) {
+        const oldPopups = document.querySelectorAll(".popup.generated");
+        oldPopups.forEach(p => p.remove());
+      }
+
+      const project = projects[currentProjectIndex];
+      const image = project.images[currentImageIndex];
+
+      const newPopup = popup.cloneNode(true);
+      newPopup.classList.add("generated");
+
+      const newImage = newPopup.querySelector("img");
+      newImage.src = image;
+
+      newPopup.style.display = "block";
+      newPopup.style.visibility = "hidden";
+      newPopup.style.left = "-9999px";
+      newPopup.style.top = "-9999px";
+
+      document.body.appendChild(newPopup);
+
+      const popupWidth = newPopup.offsetWidth;
+      const popupHeight = newPopup.offsetHeight;
+
+      const maxX = Math.max(0, window.innerWidth - popupWidth - 20);
+      const maxY = window.innerHeight * 0.6; // max 60% vertical
+      const posX = Math.floor(Math.random() * maxX);
+      const posY = Math.floor(Math.random() * maxY);
+
+      newPopup.style.left = posX + "px";
+      newPopup.style.top = posY + "px";
+      newPopup.style.visibility = "visible";
+      bringToFront(newPopup);
+
+      newPopup.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        bringToFront(newPopup);
+        offsetX = e.clientX - newPopup.offsetLeft;
+        offsetY = e.clientY - newPopup.offsetTop;
+        document.addEventListener("mousemove", movePopupNew);
+        document.addEventListener("mouseup", stopDraggingNew);
+      });
+
+      function movePopupNew(e) {
+        if (!isDragging) return;
+        newPopup.style.left = (e.clientX - offsetX) + "px";
+        newPopup.style.top = (e.clientY - offsetY) + "px";
+      }
+
+      function stopDraggingNew() {
+        isDragging = false;
+        document.removeEventListener("mousemove", movePopupNew);
+        document.removeEventListener("mouseup", stopDraggingNew);
+      }
+
+      popupDescription.textContent = project.description;
+
+      currentImageIndex++;
+      if (currentImageIndex >= project.images.length) {
+        currentImageIndex = 0;
+        currentProjectIndex = (currentProjectIndex + 1) % projects.length;
+      }
+    }
+
+    workButton.addEventListener("click", showPopup);
+
+    let isDragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    popup.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      bringToFront(popup);
+      offsetX = e.clientX - popup.offsetLeft;
+      offsetY = e.clientY - popup.offsetTop;
+      document.addEventListener("mousemove", movePopup);
+      document.addEventListener("mouseup", stopDragging);
+    });
+
+    function movePopup(e) {
+      if (!isDragging) return;
+      popup.style.left = (e.clientX - offsetX) + "px";
+      popup.style.top = (e.clientY - offsetY) + "px";
+    }
+
+    function stopDragging() {
+      isDragging = false;
+      document.removeEventListener("mousemove", movePopup);
+      document.removeEventListener("mouseup", stopDragging);
+    }
+  </script>
+</body>
+
+</html>
