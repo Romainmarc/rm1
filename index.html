@@ -73,7 +73,7 @@
       transform: translateX(-50%);
       padding: 15px;
       text-align: center;
-      font-size: 14px;
+      font-size: 15px;
       width: 80%;
       max-width: 900px;
       z-index: 9999;
@@ -268,7 +268,7 @@
       const image = project.images[currentImageIndex];
 
       // ✅ Mise à jour du compteur
-      imageCounter.textContent = `[${currentImageIndex + 1} / ${project.images.length}]`;
+      imageCounter.textContent = `[ ${currentImageIndex + 1} / ${project.images.length} ]`;
 
       const newPopup = popup.cloneNode(true);
       newPopup.classList.add("generated");
