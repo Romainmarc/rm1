@@ -1,17 +1,15 @@
 body {
   display: block;
-  font-family: Arial, "sans-serif";
   background-color: white;
   margin: 15px;
 }
 
-@font-face {
-  font-family: "Satoshi", 'Sans-Serif';
-  src: url('../font/Satoshi-Variable.ttf') format('ttf');
-  font-weight: 400;
-  font-display: swap;
-  font-style: normal;
-}
+ @font-face {
+      font-family: 'MFBeachClub';
+      src: url('fonts/MFBeachClub-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
@@ -121,7 +119,7 @@ p, a, input {
 }
 
 .texte {
-  font-family: "Satoshi", sans-serif;
+  font-family: 'MFBeachClub', sans-serif;
   color: black;
   font-size: 12px;
   margin-top: 50px;
@@ -130,7 +128,7 @@ p, a, input {
 }
 
 .texteprojet {
-  font-family: "Satoshi", sans-serif;
+  font-family: 'MFBeachClub', sans-serif;
   color: black;
   font-size: 12px;
   margin-top: 10px;
