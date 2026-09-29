@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROMAIN MARC — Selected Works</title>
+
+  <style>
+   @font-face {
+  font-family: 'MFBeachClub';
+  src: url('fonts/MFBeachClubVF.ttf') format('truetype');
+  font-weight: 100 700;
+  font-style: normal;
+}
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      background: #FFFFFF;
+      font-family: 'MFBeachClub', sans-serif;
+      color: #1A1A1A;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    /* ── PAGE ── */
+    .page {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+      /* ── NAV ── */
+    nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      padding: 0 28px;
+      z-index: 10;
+    }
+
+    .nav-logo {
+      font-size: 15px;
+      letter-spacing: 0;
+      color: #1A1A1A;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .nav-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .nav-right {
+      margin-left: auto;
+    }
+
+    .nav-link {
+      font-size: 15px;
+      letter-spacing: 0;
+      color: #1A1A1A;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: opacity 0.2s ease;
+    }
+
+    .nav-link:hover {
+      opacity: 0.45;
+    }
+
+    /* ── PROJECT LIST ── */
+    .works {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      z-index: 6;
+    }
+
+    .work-title {
+  font-size: clamp(36px, 1.4vw, 96px);
+  font-weight: 400;
+  color: #1A1A1A;
+  text-decoration: none;
+  line-height: 1.05em;
+  cursor: pointer;
+  white-space: nowrap;
+  display: block;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(14px);
+  letter-spacing: 0em;
+  font-variation-settings: 'wght' 400, 'SRFS' 0, 'STCL' 0;
+  transition: opacity 0.8s ease,
+              transform 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+              font-variation-settings 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              letter-spacing 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.work-title.show {
+  opacity: 0.25;
+  transform: translateY(0);
+}
+
+.work-title:hover {
+  opacity: 1;
+  font-variation-settings: 'wght' 400, 'SRFS' 100, 'STCL' 0;
+  letter-spacing: 0.08em;
+}
+
+
+
+    /* ── HOVER IMAGES ── */
+    .hover-img {
+      position: fixed;
+      object-fit: contain;
+      pointer-events: none;
+      opacity: 0;
+      /*transform: scale(0.92);*/
+     /* transition: opacity 0.3s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);*/
+     /* z-index: 7;*/
+      border-radius: 2px;
+      will-change: opacity, transform;
+    }
+
+    .hover-img.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* ══════════════════════════════
+       RESPONSIVE — PHONE / SMALL TABLETS
+    ══════════════════════════════ */
+    @media (max-width: 768px) {
+
+      /* Page matches the visible viewport (mobile browser bars) */
+      .page { height: 100dvh; }
+
+      /* NAV — same size as on the project pages */
+      nav { padding: 0 16px; }
+      .nav-logo,
+      .nav-link { font-size: 11px; }
+
+      /* PROJECT LIST — titles can wrap, list scrolls if the screen is short */
+      .works {
+        padding: 76px 16px 24px;
+        justify-content: center;
+        justify-content: safe center;
+        overflow-y: auto;
+      }
+
+      .work-title {
+        font-size: clamp(17px, 5.5vw, 28px);
+        white-space: normal;
+        padding: 2px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+ <nav>
+      <a href="index.html" class="nav-logo">ROMAIN MARC</a>
+      <div class="nav-center">
+        <a href="#" class="nav-link">Selected Works</a>
+      </div>
+      <div class="nav-right">
+        <a href="about.html" class="nav-link">Information</a>
+      </div>
+    </nav>
+
+    <div class="works">
+      <!-- Each data-images is a comma-separated list of image URLs for that project -->
+                        <a href="diorsans.html" class="work-title"
+        data-images="links/diorsans/diorsans1.png">
+        Dior Sans
+      </a>
+                        <a href="lesplisdureel.html" class="work-title"
+        data-images="links/lesplisdureel/lpdr1.jpg">
+        Les plis du réel
+      </a>
+      <a href="beachclub.html" class="work-title"
+        data-images="links/beachclub/beachclub1.jpg">
+        MF Beach Club
+      </a>
+      <a href="recreationcontemporaine.html" class="work-title"
+        data-images="links/recreationcontemporaine/recreationcontemporaine1.jpg">
+        Re-Création contemporaine
+      </a>
+        <a href="corinthe.html" class="work-title"
+        data-images="links/corinthe/corinthe1.gif">
+        MF Corinthe
+      </a>
+                      <a href="alarecherche.html" class="work-title"
+        data-images="links/alarecherche/alarecherche1.jpg">
+        À la recherche
+      </a>
+      <a href="prad_a.html" class="work-title"
+        data-images="links/prada/IMG_5383.JPG">
+        Prad'a
+      </a>
+        <a href="purplehaze.html" class="work-title"
+        data-images="links/purplehaze/purplehaze1.jpg">
+        Purple Haze/Greek and Georgian
+      </a>
+                <a href="ostensible.html" class="work-title"
+        data-images="links/ostensible/ostensible1.jpg">
+        Ostensible
+      </a>
+        
+    </div>
+
+
+
+    <div class="bottom-bar"></div>
+
+  </div>
+
+  <script>
+    
+
+    /* ── STAGGERED FADE IN ── */
+    document.fonts.ready.then(() => {
+      document.querySelectorAll('.work-title').forEach((el, i) => {
+        setTimeout(() => el.classList.add('show'), 100 + i * 120);
+      });
+    });
+
+    /* ── HOVER IMAGE PER TITLE ── */
+    function rand(min, max) { return Math.random() * (max - min) + min; }
+
+    // Pas d'images au survol sur les écrans tactiles (pas de hover)
+    const canHover = window.matchMedia('(hover: hover)').matches;
+
+    // Pre-create one img element per image URL across all projects
+    const imgCache = {};
+
+    document.querySelectorAll('.work-title').forEach(title => {
+      if (!canHover) return;
+
+      const srcs = title.dataset.images.split(',').map(s => s.trim());
+      const pool = [];
+      let visible = [];
+
+      srcs.forEach(src => {
+        if (!imgCache[src]) {
+          const img = document.createElement('img');
+          img.className = 'hover-img';
+          img.src = src;
+          document.body.appendChild(img);
+          imgCache[src] = img;
+        }
+        pool.push(imgCache[src]);
+      });
+
+      // Place l'image à sa résolution native (en la réduisant seulement
+      // si elle dépasse la fenêtre, pour qu'elle reste visible à l'écran)
+      function placeAtNativeSize(img) {
+        const naturalW = img.naturalWidth  || 400;
+        const naturalH = img.naturalHeight || 400;
+
+        const margin = 40;
+        const maxW = window.innerWidth  - margin * 2;
+        const maxH = window.innerHeight - margin * 2;
+
+        const sizeFactor = 0.25; // 1 = taille native, 0.5 = deux fois plus petit, etc.
+
+        let scale = sizeFactor;
+        if (naturalW * scale > maxW || naturalH * scale > maxH) {
+          scale = Math.min(maxW / naturalW, maxH / naturalH);
+        }
+
+        const w = naturalW * scale;
+        const h = naturalH * scale;
+
+        img.style.width  = w + 'px';
+        img.style.height = h + 'px';
+        img.style.left = rand(margin, window.innerWidth  - w - margin) + 'px';
+        img.style.top  = rand(margin, window.innerHeight - h - margin) + 'px';
+      }
+
+      function revealImg(img) {
+        placeAtNativeSize(img);
+        img.classList.add('visible');
+        visible.push(img);
+      }
+
+      function showNext() {
+        const available = pool.filter(img => !img.classList.contains('visible'));
+        if (!available.length) return;
+        const img = available[Math.floor(Math.random() * available.length)];
+        if (visible.length >= 2) {
+          const oldest = visible.shift();
+          oldest.classList.remove('visible');
+        }
+
+        // Attend que l'image soit chargée pour connaître ses dimensions réelles
+        if (img.complete && img.naturalWidth) {
+          revealImg(img);
+        } else {
+          img.addEventListener('load', () => revealImg(img), { once: true });
+        }
+      }
+
+      function hideAll() {
+        pool.forEach(img => img.classList.remove('visible'));
+        visible = [];
+      }
+
+      title.addEventListener('mouseenter', () => {
+        showNext();
+      });
+
+      title.addEventListener('mouseleave', () => {
+        hideAll();
+      });
+    });
+  </script>
+
+</body>
+</html>

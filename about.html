@@ -1,98 +1,244 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="fr">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROMAIN MARC — Information</title>
+
   <style>
-      @font-face {
+    @font-face {
       font-family: 'MFBeachClub';
       src: url('fonts/MFBeachClub-Regular.ttf') format('truetype');
       font-weight: normal;
       font-style: normal;
     }
-    body {
-      background: #ededed;
-      font-family: 'MFBeachClub', sans-serif;
+
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
-    h2 {
-      color: black;
-      font-weight: bold;
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      background: #FFFFFF;
+      font-family: 'MFBeachClub', sans-serif;
+      color: #1A1A1A;
+      -webkit-text-size-adjust: 100%;
     }
 
-    title {
-      color: black;
-      font-size: 100px;
+    /* ── PAGE ── */
+    .page {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
     }
 
-    button {
-        font-family: 'MFBeachClub', sans-serif;
-      background: none;
-      color: white;
-      border: none;
-      padding: 20px 40px;
-      border-radius: 80px;
-      font-size: 40px;
-      cursor: pointer;
+    /* ── NAV ── */
+    nav {
       position: absolute;
-      top: 20px;
-      z-index: 10000;
-      mix-blend-mode: difference;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      padding: 0 28px;
+      z-index: 10;
     }
 
-    button.active {
-      background: black;
-      color: white;
+    .nav-logo {
+      font-size: 15px;
+      letter-spacing: 0;
+      color: #1A1A1A;
+      text-decoration: none;
+      text-transform: uppercase;
     }
 
-    #aboutButton {
-      right: 20px;
+    .nav-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
-    #workButton {
-      left: 20px;
+    .nav-right {
+      margin-left: auto;
     }
 
-    .about-container {
-      padding-top: 120px; /* espace sous les boutons */
-      padding-left: 50px; /* marge à gauche */
-      padding-right: 50px;
-      font-size: 0.938rem;
-      color: black;
-      max-width: 900px;
+    .nav-link {
+      font-size: 15px;
+      letter-spacing: 0;
+      color: #1A1A1A;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: opacity 0.2s ease;
     }
 
-    b {
-      font-weight: bold;
+    .nav-link:hover {
+      opacity: 0.45;
     }
 
+    /* ── CONTENT ── */
+    .content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 28px;
+      gap: 200px;
+    }
+
+    .bio {
+      max-width: 100%;
+      font-size: clamp(12px, 1.4vw, 20px);
+      line-height: 1;
+      font-weight: 400;
+      color: #1A1A1A;
+    }
+
+    .contact {
+      align-self: center;
+      margin-left: 10%;
+      font-size: clamp(12px, 1.4vw, 20px);
+      line-height: 1;
+      color: #1A1A1A;
+    }
+
+    .contact a {
+      color: inherit;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+        opacity: 1;
+    }
+
+    .contact a:hover {
+      opacity: 1;
+    }
+
+    /* ── TAGLINE ── */
+    .tagline {
+      position: absolute;
+      bottom: 3px;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .tagline span {
+      display: block;
+      font-size: 100px; /* overridden by JS */
+      color: #B0B0B0;
+      white-space: nowrap;
+      letter-spacing: -0.01em;
+      padding-left: 20px;
+      clip-path: inset(0 0 10% 0);
+        opacity: 0%;
+    }
+
+    /* ── FADE IN ANIMATION ── */
+    .bio,
+    .contact {
+      opacity: 0;
+      transform: translateY(100px);
+      transition: opacity 4s ease, transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .bio.show,
+    .contact.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ══════════════════════════════
+       RESPONSIVE — PHONE / SMALL TABLETS
+    ══════════════════════════════ */
+    @media (max-width: 768px) {
+
+      /* Page matches the visible viewport (mobile browser bars) */
+      .page { height: 100dvh; }
+
+      /* NAV — same size as on the project pages */
+      nav { padding: 0 16px; }
+      .nav-logo,
+      .nav-link { font-size: 11px; }
+
+      /* CONTENT — tighter spacing, left-aligned contact,
+         scrolls if the text is taller than the screen */
+      .content {
+        padding: 76px 16px 64px;
+        gap: 40px;
+        justify-content: center;
+        justify-content: safe center;
+        overflow-y: auto;
+      }
+
+      .bio,
+      .contact {
+        font-size: 13px;
+        line-height: 1.25;
+        flex-shrink: 0;
+      }
+
+      .contact {
+        align-self: flex-start;
+        margin-left: 0;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <title>Romain Marc</title>
-  
-  <!-- Lien vers index.html pour le bouton Work -->
-  <a href="index.html">
-    <button id="workButton">WORK</button>
-  </a>
-  
-  <button id="aboutButton" class="active">ABOUT</button>
+  <div class="page">
 
-  <div class="about-container">
-    <p>
-      <b>Romain Marc</b><br>
-      +33(0)631411465<br>
-      <a href="mailto:hello@romainmarc.fr" style="color:black;">hello@romainmarc.fr</a><br><br>
-        
-        Paris/Bordeaux/Lyon<br><br>
+    <nav>
+      <a href="index.html" class="nav-logo">ROMAIN MARC</a>
+      <div class="nav-center">
+        <a href="selectedworks.html" class="nav-link">Selected Works</a>
+      </div>
+      <div class="nav-right">
+        <a href="#" class="nav-link">Information</a>
+      </div>
+    </nav>
 
-    Graphiste indépendant diplômé de l'école Campus Fonderie de l'Image du Master Directeur de Création en Design Graphique.<br>
-    Co-fondateur de la fonderie typographique <a href="https://milletype.fr/"target="_blank" style="color:black;">Milletype Foundry</a> accompagné par 
-    <a href="https://corentinechivard.com//"target="_blank" style="color:black;">Corentin Echivard.</a>
-    </p>
+    <div class="content">
+      <p class="bio">Paris-based graphic designer, I collaborate to develop distinctive visual identities and creative systems. From initial concept and strategic thinking to art direction and final execution, I take a holistic approach to design, combining a strong sensitivity to typography, visual language, and detail with a clear understanding of each project’s objectives.<br><br>
+
+Co-founder of Milletype Foundry, an independent type foundry established with Corentin Echivard, focusing on contemporary type design and bespoke typographic solutions.
+<br><br>Slanted Support independent type II, 2025<br>Type01 #10, 2025<br>Puces Typos #15, 2024<br>Speaker at By Machine of loving grace<br>Featured online on Étapes<br>Featured online on Ephemerides.Fun</p>
+      <div class="contact">
+        <a href="tel:0638697719">+33(0)6.31.41.14.65</a><br>
+        <a href="mailto:hello@romainmarc.fr">hello@romainmarc.fr</a><br>
+        <span>Paris</span>
+      </div>
+    </div>
+
+    <div class="tagline">
+      <span>GRAPHIC &amp; TYPE DESIGN</span>
+    </div>
+
   </div>
-</body>
 
+  <script>
+    function fitTagline() {
+      const span = document.querySelector('.tagline span');
+      const available = window.innerWidth - 20;
+      span.style.fontSize = '200px';
+      span.style.fontSize = (200 * available / span.scrollWidth) + 'px';
+    }
+
+    document.fonts.ready.then(fitTagline);
+    window.addEventListener('resize', fitTagline);
+
+    setTimeout(() => document.querySelector('.bio').classList.add('show'), 100);
+    setTimeout(() => document.querySelector('.contact').classList.add('show'), 400);
+  </script>
+
+</body>
 </html>
